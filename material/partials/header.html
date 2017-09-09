@@ -27,7 +27,12 @@
                 </span>
               {% endfor %}
             {% endif %}
-            {{ page.title | default(config.site_name, true) }}
+            {% set feature = config.extra.get("feature", {}) %}
+            {% if feature.header_site_name %}
+              {{ config.site_name }}
+            {% else %}
+              {{ page.title | default(config.site_name, true) }}
+            {% endif %}
           {% endblock %}
         </span>
       </div>
